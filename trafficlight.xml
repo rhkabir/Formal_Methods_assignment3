@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan free_centre, get_centre ;
+int a=0,b=1,c=1,d=1;
+
+void change1(){
+b=0;
+a=1;
+c=1;
+d=1;
+}
+void change2(){
+c=0;
+a=1;
+b=1;
+d=1;
+}
+void change3(){
+d=0;
+a=1;
+b=1;
+c=1;
+}
+void change4(){
+a=0;
+b=1;
+c=1;
+d=1;
+}</declaration>
+	<template>
+		<name x="5" y="5">trafficlight_kashmir</name>
+		<declaration>// Place local declarations here.
+
+clock x;</declaration>
+		<location id="id0" x="-527" y="-204" color="#ffff00">
+			<name x="-537" y="-238">Yellow2</name>
+			<label kind="invariant" x="-537" y="-187">x&lt;=4</label>
+		</location>
+		<location id="id1" x="-352" y="-603" color="#ff0000">
+			<name x="-362" y="-637">Red</name>
+		</location>
+		<location id="id2" x="149" y="-229" color="#ffff00">
+			<name x="139" y="-263">Yellow</name>
+			<label kind="invariant" x="139" y="-212">x&lt;=4</label>
+		</location>
+		<location id="id3" x="-310" y="-229" color="#00ff00">
+			<name x="-320" y="-263">Green</name>
+			<label kind="invariant" x="-320" y="-212">x&lt;=70</label>
+		</location>
+		<init ref="id3"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-509" y="-420">free_centre!</label>
+			<label kind="assignment" x="-509" y="-403">change1()</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id0"/>
+			<label kind="assignment" x="-509" y="-216">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="58" y="-527">a==0</label>
+			<label kind="synchronisation" x="58" y="-510">get_centre!</label>
+			<label kind="assignment" x="-119" y="-450">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="-292" y="-229">x=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>trafficlight_g11</name>
+		<declaration>clock x;</declaration>
+		<location id="id4" x="24" y="421" color="#ffff00">
+			<name x="14" y="387">Yellow2</name>
+			<label kind="invariant" x="14" y="438">x&lt;=4</label>
+		</location>
+		<location id="id5" x="199" y="22" color="#ff0000">
+			<name x="189" y="-12">Red</name>
+		</location>
+		<location id="id6" x="241" y="396" color="#00ff00">
+			<name x="231" y="362">Green</name>
+			<label kind="invariant" x="231" y="413">x&lt;=40</label>
+		</location>
+		<location id="id7" x="700" y="396" color="#ffff00">
+			<name x="690" y="362">Yellow</name>
+			<label kind="invariant" x="690" y="413">x&lt;=4</label>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="42" y="205">free_centre!</label>
+			<label kind="assignment" x="42" y="222">change4()</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id4"/>
+			<label kind="assignment" x="59" y="425">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="guard" x="609" y="98">d==0</label>
+			<label kind="synchronisation" x="609" y="115">get_centre!</label>
+			<label kind="assignment" x="432" y="175">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="259" y="396">x=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>trafficlight_NUST</name>
+		<declaration>clock x;</declaration>
+		<location id="id8" x="24" y="421" color="#ffff00">
+			<name x="14" y="387">Yellow2</name>
+			<label kind="invariant" x="14" y="438">x&lt;=4</label>
+		</location>
+		<location id="id9" x="199" y="22" color="#ff0000">
+			<name x="189" y="-12">Red</name>
+		</location>
+		<location id="id10" x="241" y="396" color="#00ff00">
+			<name x="231" y="362">Green</name>
+			<label kind="invariant" x="231" y="413">x&lt;=40</label>
+		</location>
+		<location id="id11" x="700" y="396" color="#ffff00">
+			<name x="690" y="362">Yellow</name>
+			<label kind="invariant" x="690" y="413">x&lt;=4</label>
+		</location>
+		<init ref="id9"/>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="42" y="205">free_centre!</label>
+			<label kind="assignment" x="42" y="222">change3()</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id8"/>
+			<label kind="assignment" x="51" y="416">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id11"/>
+			<label kind="guard" x="609" y="98">c==0</label>
+			<label kind="synchronisation" x="609" y="115">get_centre!</label>
+			<label kind="assignment" x="432" y="175">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="assignment" x="272" y="391">x=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>trafficlight_zeropoint</name>
+		<declaration>clock x;</declaration>
+		<location id="id12" x="-444" y="-221" color="#ffff00">
+			<name x="-454" y="-255">Yellow2</name>
+			<label kind="invariant" x="-454" y="-204">x&lt;=4</label>
+		</location>
+		<location id="id13" x="-269" y="-620" color="#ff0000">
+			<name x="-279" y="-654">Red</name>
+		</location>
+		<location id="id14" x="-227" y="-246" color="#00ff00">
+			<name x="-237" y="-280">Green</name>
+			<label kind="invariant" x="-237" y="-229">x&lt;=70</label>
+		</location>
+		<location id="id15" x="232" y="-246" color="#ffff00">
+			<name x="222" y="-280">Yellow</name>
+			<label kind="invariant" x="222" y="-229">x&lt;=4</label>
+		</location>
+		<init ref="id13"/>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-426" y="-437">free_centre!</label>
+			<label kind="assignment" x="-426" y="-420">change2()</label>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id12"/>
+			<label kind="assignment" x="-416" y="-221">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id15"/>
+			<label kind="guard" x="141" y="-544">b==0</label>
+			<label kind="synchronisation" x="141" y="-527">get_centre!</label>
+			<label kind="assignment" x="-36" y="-467">x=0</label>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id14"/>
+			<label kind="assignment" x="-209" y="-246">x=0</label>
+		</transition>
+	</template>
+	<template>
+		<name>centre</name>
+		<location id="id16" x="110" y="-34">
+			<name x="100" y="-68">taken</name>
+		</location>
+		<location id="id17" x="-178" y="-42">
+			<name x="-188" y="-76">free</name>
+		</location>
+		<init ref="id16"/>
+		<transition>
+			<source ref="id16"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="-85" y="0">free_centre?</label>
+			<nail x="8" y="25"/>
+			<nail x="-25" y="25"/>
+			<nail x="-76" y="25"/>
+			<nail x="-110" y="17"/>
+			<nail x="-161" y="-25"/>
+		</transition>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<label kind="synchronisation" x="-93" y="-127">get_centre?</label>
+			<nail x="-95" y="-85"/>
+			<nail x="-35" y="-94"/>
+			<nail x="7" y="-94"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+T1 = trafficlight_kashmir();
+T2 = trafficlight_zeropoint();
+T3 = trafficlight_NUST();
+T4 = trafficlight_g11();
+// List one or more processes to be composed into a system.
+system T1,T2,T3,T4,centre;
+    </system>
+	<queries>
+		<query>
+			<formula>E&lt;&gt;(T4.Green)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt;(T3.Green)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt;(T2.Green)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt;(T1.Green)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt;(T3.Green)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt;(T1.Green)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>A[] not (T1.Red and T2.Red and T3.Red and T4.Red)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+		<query>
+			<formula>A[] not (T1.Green and T2.Green and T3.Green and T4.Green)
+			</formula>
+			<comment>
+			</comment>
+		</query>
+	</queries>
+</nta>
